@@ -8,5 +8,8 @@ jobs:
   build:
     runs-on: ubuntu-slim
     steps:
-      - name: Echo hello
-        run: echo "hello"
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run build script
+        run: ./script/build
