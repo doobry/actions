@@ -18,3 +18,7 @@ jobs:
 
       - name: Run build script
         run: ./script/build
+
+  test:
+    needs: build
+    uses: ./.github/workflows/test.yml

@@ -1,18 +1,10 @@
 name: test
 
 on:
-  workflow_dispatch:
-  workflow_run:
-    workflows:
-      - build
-    types:
-      - completed
+  workflow_call:
 
 jobs:
   test:
-    if: >
-      github.event_name != 'workflow_run'
-      || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-24.04
     steps:
       - name: Checkout
