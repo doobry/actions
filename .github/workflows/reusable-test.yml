@@ -1,0 +1,25 @@
+name: Test Flow
+
+on:
+  workflow_call:
+
+jobs:
+  test:
+    name: Test (${{ matrix.shard }}/${{ matrix.total }})
+    strategy:
+      matrix:
+        total: [2]
+        shard: [1, 2]
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Download build output
+        uses: actions/download-artifact@v8
+        with:
+          name: build-output
+          path: build
+
+      - name: Run test script
+        run: ./script/test
